@@ -17,8 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let adminRole     = null;
   let loggedInUser  = null;
   let usersList     = [];
-  let rootPassword  = '9dc7a8f5701f54f0722bc4d467b5082b46398bcb612b0a5835e00b63750a7249';
-  let standardPassword = 'bf91904099df59fedea45e81b7e41614f64ddd696baa49b9e9f55976e443f0a5';
+  // Password hashes removed – authentication now handled server-side.
 
   // Edit mode
   let isWidgetEditMode   = false;
@@ -221,40 +220,26 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ====================================================================
      10. DATABASE CONTROLLER
      ==================================================================== */
-  async function loadDatabase() {
-    // Attempt to fetch the protected XML via Netlify Function
-    try {
-      const res = await fetch('/.netlify/functions/getDatabase');
-      if (res.status === 401) {
-        // Not authenticated – trigger Netlify Identity login UI
-        netlifyIdentity.open();
-        return generateFallbackXML();
-      }
-      const text = await res.text();
-      const doc = new DOMParser().parseFromString(text, 'text/xml');
-      if (doc.querySelector('parsererror')) throw new Error('XML parse error');
-      localStorage.setItem('ee_xml_database', text);
-      return doc;
-    } catch (e) {
-      console.error('Database load failed:', e);
-      return generateFallbackXML();
-    }
+// ====================================================================
+// 10. DATABASE CONTROLLER
+// ====================================================================
+async function loadDatabase() {
+  // Load static XML database from repository
+  try {
+    const res = await fetch('database.xml');
+    if (!res.ok) throw new Error('Failed to load database.xml');
+    const text = await res.text();
+    const doc = new DOMParser().parseFromString(text, 'text/xml');
+    if (doc.querySelector('parsererror')) throw new Error('XML parse error');
+    localStorage.setItem('ee_xml_database', text);
+    return doc;
+  } catch (e) {
+    console.error('Database load failed:', e);
+    return generateFallbackXML();
   }
-  // Initialize Netlify Identity and listen for auth events
-  netlifyIdentity.init();
-  netlifyIdentity.on('login', user => {
-    isLoggedIn = true;
-    // Assume admin role is stored in user.app_metadata.roles array
-    adminRole = (user.app_metadata && user.app_metadata.roles && user.app_metadata.roles.includes('admin')) ? 'root' : 'standard';
-    renderActiveTab();
-    showToast('Logged in via Netlify Identity');
-  });
-  netlifyIdentity.on('logout', () => {
-    isLoggedIn = false;
-    adminRole = null;
-    renderActiveTab();
-    showToast('Logged out');
-  });
+}
+
+// Authentication is now handled via the admin panel UI; Netlify Identity removed.
   function saveDatabase() {
     if (!xmlDatabase) return;
     localStorage.setItem('ee_xml_database', new XMLSerializer().serializeToString(xmlDatabase));

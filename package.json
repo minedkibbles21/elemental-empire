@@ -1,11 +1,11 @@
 {
   "name": "elemental-empire",
   "version": "1.0.0",
-  "description": "Elemental Empire Netlify site",
+  "description": "Elemental Empire  site",
   "main": "index.js",
   "scripts": {
     "hash": "node hash_password.js",
-    "build": "echo Build step (Netlify handles)"
+    "build": "echo Build step"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3"
