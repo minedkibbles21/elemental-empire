@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let adminRole     = null;
   let loggedInUser  = null;
   let usersList     = [];
-  let rootPassword  = 'Prachet@131';
-  let standardPassword = 'Admin@EE';
+  let rootPassword  = '9dc7a8f5701f54f0722bc4d467b5082b46398bcb612b0a5835e00b63750a7249';
+  let standardPassword = 'bf91904099df59fedea45e81b7e41614f64ddd696baa49b9e9f55976e443f0a5';
 
   // Edit mode
   let isWidgetEditMode   = false;
@@ -55,6 +55,32 @@ document.addEventListener('DOMContentLoaded', () => {
   setupLightbox();
   setupFloatingEditBtn();
   setupInlineEditModal();
+
+  // Handle secret url parameter admin access
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.has('admin') || urlParams.has('manage')) {
+    localStorage.setItem('ee_admin_visible', 'true');
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+
+  // Keyboard shortcut listener to toggle admin visibility: Ctrl + Shift + A
+  window.addEventListener('keydown', e => {
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
+      e.preventDefault();
+      if (localStorage.getItem('ee_admin_visible') === 'true') {
+        localStorage.removeItem('ee_admin_visible');
+        showToast('Admin access points hidden.');
+        if (activeTab === 'admin') {
+          activeTab = 'home';
+        }
+      } else {
+        localStorage.setItem('ee_admin_visible', 'true');
+        showToast('Admin access points unlocked!');
+      }
+      setupNavigation();
+      renderActiveTab();
+    }
+  });
 
   loadDatabase().then(doc => {
     xmlDatabase = doc;
@@ -143,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   function updateFloatingEditBtn() {
     if (!floatingEditBtn) return;
-    if (isLoggedIn && activeTab !== 'admin') {
+    if (isLoggedIn && activeTab !== 'admin' && localStorage.getItem('ee_admin_visible') === 'true') {
       floatingEditBtn.style.display = 'flex';
       if (isWidgetEditMode) {
         floatingEditBtn.classList.add('active');
@@ -196,24 +222,39 @@ document.addEventListener('DOMContentLoaded', () => {
      10. DATABASE CONTROLLER
      ==================================================================== */
   async function loadDatabase() {
-    const stored = localStorage.getItem('ee_xml_database');
-    if (stored) {
-      try {
-        const doc = new DOMParser().parseFromString(stored, 'text/xml');
-        if (!doc.querySelector('parsererror')) return doc;
-      } catch(e) { /* fall through */ }
-    }
+    // Attempt to fetch the protected XML via Netlify Function
     try {
-      const text = await fetch('database.xml').then(r => r.text());
+      const res = await fetch('/.netlify/functions/getDatabase');
+      if (res.status === 401) {
+        // Not authenticated – trigger Netlify Identity login UI
+        netlifyIdentity.open();
+        return generateFallbackXML();
+      }
+      const text = await res.text();
       const doc = new DOMParser().parseFromString(text, 'text/xml');
       if (doc.querySelector('parsererror')) throw new Error('XML parse error');
       localStorage.setItem('ee_xml_database', text);
       return doc;
-    } catch(e) {
+    } catch (e) {
       console.error('Database load failed:', e);
       return generateFallbackXML();
     }
   }
+  // Initialize Netlify Identity and listen for auth events
+  netlifyIdentity.init();
+  netlifyIdentity.on('login', user => {
+    isLoggedIn = true;
+    // Assume admin role is stored in user.app_metadata.roles array
+    adminRole = (user.app_metadata && user.app_metadata.roles && user.app_metadata.roles.includes('admin')) ? 'root' : 'standard';
+    renderActiveTab();
+    showToast('Logged in via Netlify Identity');
+  });
+  netlifyIdentity.on('logout', () => {
+    isLoggedIn = false;
+    adminRole = null;
+    renderActiveTab();
+    showToast('Logged out');
+  });
   function saveDatabase() {
     if (!xmlDatabase) return;
     localStorage.setItem('ee_xml_database', new XMLSerializer().serializeToString(xmlDatabase));
@@ -475,9 +516,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    const sep = document.createElement('li'); sep.className = 'nav-separator';
-    navContainer.appendChild(sep);
-    navContainer.appendChild(makeLink('admin', 'Admin Console', 'fa-solid fa-gears', true));
+    if (localStorage.getItem('ee_admin_visible') === 'true') {
+      const sep = document.createElement('li'); sep.className = 'nav-separator';
+      navContainer.appendChild(sep);
+      navContainer.appendChild(makeLink('admin', 'Admin Console', 'fa-solid fa-gears', true));
+    }
   }
 
   /* ====================================================================
@@ -485,6 +528,10 @@ document.addEventListener('DOMContentLoaded', () => {
      ==================================================================== */
   function renderActiveTab() {
     if (!xmlDatabase) return;
+    if (activeTab === 'admin' && localStorage.getItem('ee_admin_visible') !== 'true') {
+      activeTab = 'home';
+      setupNavigation();
+    }
     contentViewport.scrollTop = 0;
 
     const structuralViews = { home: renderHomeView, timeline: renderTimelineView, leaders: renderLeadersView, bases: renderBasesView, wars: renderWarsView, allies: renderAlliesView, protocols: renderProtocolsView, history: renderHistoryView, players: renderPlayersView, admin: renderAdminView };
@@ -1157,16 +1204,17 @@ document.addEventListener('DOMContentLoaded', () => {
           </form>
         </div>
       </div>`;
-    document.getElementById('loginForm').addEventListener('submit', e => {
+    document.getElementById('loginForm').addEventListener('submit', async e => {
       e.preventDefault();
       const u = document.getElementById('login-username').value;
       const p = document.getElementById('login-password').value;
       const err = document.getElementById('login-error');
-      const match = usersList.find(usr => usr.username===u && usr.password===p);
+      const hashedInput = await sha256(p);
+      const match = usersList.find(usr => usr.username===u && usr.password===hashedInput);
       if (match) { isLoggedIn=true; adminRole=match.role; loggedInUser=match.username; showToast(`Welcome, ${loggedInUser}.`); renderAdminView(); return; }
       if (u==='admin') {
-        if (p===rootPassword)     { isLoggedIn=true; adminRole='root';     loggedInUser='admin'; showToast('Welcome, Arch-Empire Admin.'); renderAdminView(); return; }
-        if (p===standardPassword) { isLoggedIn=true; adminRole='standard'; loggedInUser='admin'; showToast('Access Granted. Standard Admin.'); renderAdminView(); return; }
+        if (hashedInput===rootPassword)     { isLoggedIn=true; adminRole='root';     loggedInUser='admin'; showToast('Welcome, Arch-Empire Admin.'); renderAdminView(); return; }
+        if (hashedInput===standardPassword) { isLoggedIn=true; adminRole='standard'; loggedInUser='admin'; showToast('Access Granted. Standard Admin.'); renderAdminView(); return; }
       }
       document.getElementById('login-error-text').textContent = 'Invalid username or password.';
       err.style.display='flex'; err.classList.remove('shake'); void err.offsetWidth; err.classList.add('shake');
@@ -1292,8 +1340,8 @@ document.addEventListener('DOMContentLoaded', () => {
       <form id="form-sec-passwords">
         <h4 class="admin-meta-header" style="margin-top:0;">Legacy Fallback Passwords</h4>
         <div class="form-row">
-          <div class="form-group"><label>Root Password</label><input type="password" class="form-control" id="sec-root-pass" value="${rootPassword}"></div>
-          <div class="form-group"><label>Standard Password</label><input type="password" class="form-control" id="sec-std-pass" value="${standardPassword}"></div>
+          <div class="form-group"><label>Root Password</label><input type="password" class="form-control" id="sec-root-pass" value="••••••••" placeholder="Enter new password"></div>
+          <div class="form-group"><label>Standard Password</label><input type="password" class="form-control" id="sec-std-pass" value="••••••••" placeholder="Enter new password"></div>
         </div>
         <button type="submit" class="btn btn-primary" style="width:100%;margin-bottom:24px;">Update Passwords</button>
       </form>
@@ -1476,23 +1524,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Security listeners
     if (isRoot) {
-      document.getElementById('form-sec-passwords')?.addEventListener('submit', e => {
+      document.getElementById('form-sec-passwords')?.addEventListener('submit', async e => {
         e.preventDefault();
-        rootPassword     = document.getElementById('sec-root-pass').value;
-        standardPassword = document.getElementById('sec-std-pass').value;
-        let sec = xmlDatabase.querySelector('meta security');
-        if (!sec) { sec = xmlDatabase.createElement('security'); xmlDatabase.querySelector('meta')?.appendChild(sec); }
-        setXmlField(sec, 'root_password',     rootPassword);
-        setXmlField(sec, 'standard_password', standardPassword);
-        saveDatabase(); showToast('Passwords updated.'); renderAdminView();
+        const rootInput = document.getElementById('sec-root-pass').value;
+        const stdInput = document.getElementById('sec-std-pass').value;
+        
+        let changed = false;
+        if (rootInput !== '••••••••' && rootInput.trim() !== '') {
+          rootPassword = await sha256(rootInput);
+          changed = true;
+        }
+        if (stdInput !== '••••••••' && stdInput.trim() !== '') {
+          standardPassword = await sha256(stdInput);
+          changed = true;
+        }
+
+        if (changed) {
+          let sec = xmlDatabase.querySelector('meta security');
+          if (!sec) { sec = xmlDatabase.createElement('security'); xmlDatabase.querySelector('meta')?.appendChild(sec); }
+          setXmlField(sec, 'root_password',     rootPassword);
+          setXmlField(sec, 'standard_password', standardPassword);
+          saveDatabase();
+          showToast('Passwords updated (hashed).');
+        } else {
+          showToast('No changes made.');
+        }
+        renderAdminView();
       });
-      document.getElementById('form-add-user')?.addEventListener('submit', e => {
+      document.getElementById('form-add-user')?.addEventListener('submit', async e => {
         e.preventDefault();
         const u = document.getElementById('new-user-uname').value.trim();
         const p = document.getElementById('new-user-pass').value;
         const r = document.getElementById('new-user-role').value;
         if (usersList.find(usr => usr.username.toLowerCase()===u.toLowerCase())) { alert('Username already exists.'); return; }
-        usersList.push({username:u,password:p,role:r});
+        const hashedPass = await sha256(p);
+        usersList.push({username:u,password:hashedPass,role:r});
         saveUsersToXml(); saveDatabase(); showToast(`Admin "${u}" created.`);
         document.getElementById('new-user-uname').value = '';
         document.getElementById('new-user-pass').value  = '';
@@ -1739,8 +1805,15 @@ document.addEventListener('DOMContentLoaded', () => {
     return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
   }
 
+  async function sha256(message) {
+    const msgBuffer = new TextEncoder().encode(message);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
   function generateFallbackXML() {
-    return new DOMParser().parseFromString(`<?xml version="1.0" encoding="UTF-8"?><elemental_empire><meta><title>Elemental Empire</title><founded>May 5, 2023</founded><members>1,200+</members><era>Triumvirate</era><lockdown_status>green</lockdown_status><security><root_password>Prachet@131</root_password><standard_password>Admin@EE</standard_password></security></meta><pages><page id="home" icon="fa-solid fa-house-chimney"><title>Empire Archives</title><subtitle>"Loyalty Before Power"</subtitle><content>Database could not be loaded. Please reload.</content></page><page id="history" icon="fa-solid fa-book-bookmark"><title>Empire History</title></page><page id="allies" icon="fa-solid fa-handshake"><title>Allies</title></page><page id="protocols" icon="fa-solid fa-scale-balanced"><title>Protocols</title></page></pages><leaders></leaders><bases></bases><wars></wars><timeline></timeline><players></players><discord_roles></discord_roles></elemental_empire>`, 'text/xml');
+    return new DOMParser().parseFromString(`<?xml version="1.0" encoding="UTF-8"?><elemental_empire><meta><title>Elemental Empire</title><founded>May 5, 2023</founded><members>1,200+</members><era>Triumvirate</era><lockdown_status>green</lockdown_status><security><root_password>9dc7a8f5701f54f0722bc4d467b5082b46398bcb612b0a5835e00b63750a7249</root_password><standard_password>bf91904099df59fedea45e81b7e41614f64ddd696baa49b9e9f55976e443f0a5</standard_password></security></meta><pages><page id="home" icon="fa-solid fa-house-chimney"><title>Empire Archives</title><subtitle>"Loyalty Before Power"</subtitle><content>Database could not be loaded. Please reload.</content></page><page id="history" icon="fa-solid fa-book-bookmark"><title>Empire History</title></page><page id="allies" icon="fa-solid fa-handshake"><title>Allies</title></page><page id="protocols" icon="fa-solid fa-scale-balanced"><title>Protocols</title></page></pages><leaders></leaders><bases></bases><wars></wars><timeline></timeline><players></players><discord_roles></discord_roles></elemental_empire>`, 'text/xml');
   }
 
   /* ====================================================================
