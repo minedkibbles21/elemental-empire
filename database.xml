@@ -12,70 +12,92 @@
     <youtube>https://www.youtube.com/channel/UCB6pK6iofPzMSoxg1I94c8g</youtube>
     <lockdown_status>green</lockdown_status>
     <security>
-      <root_password>9dc7a8f5701f54f0722bc4d467b5082b46398bcb612b0a5835e00b63750a7249</root_password>
+      <root_password>fcaee16cfef2180eb7ac9fee8851d973f49595804b2a09dfb5b0fef6fc5fb782</root_password>
       <standard_password>bf91904099df59fedea45e81b7e41614f64ddd696baa49b9e9f55976e443f0a5</standard_password>
-      <users>
-        <user>
-          <username>admin</username>
-          <password>9dc7a8f5701f54f0722bc4d467b5082b46398bcb612b0a5835e00b63750a7249</password>
-          <role>root</role>
-        </user>
-        <user>
-          <username>standard</username>
-          <password>bf91904099df59fedea45e81b7e41614f64ddd696baa49b9e9f55976e443f0a5</password>
-          <role>standard</role>
-        </user>
-      </users>
-    </security>
+      
+    <users>
+<user>
+  <username>admin</username>
+  <password>9dc7a8f5701f54f0722bc4d467b5082b46398bcb612b0a5835e00b63750a7249</password>
+  <role>root</role>
+</user>
+<user>
+  <username>standard</username>
+  <password>bf91904099df59fedea45e81b7e41614f64ddd696baa49b9e9f55976e443f0a5</password>
+  <role>standard</role>
+</user>
+<user>
+  <username>admin1</username>
+  <password>0db48c3633036a99c334b7002963ef128312af53803a2a56cf02047285e5148d</password>
+  <role>standard</role>
+</user>
+</users>
+</security>
   </meta>
 
   <pages>
     <page id="home">
       <title>Welcome to the Elemental Empire</title>
       <subtitle>The Great Bending Civilization of BendersMC</subtitle>
-      <content><![CDATA[
+      <content>
+<![CDATA[
         <p>The <strong>Elemental Empire (EE)</strong> is one of the largest, oldest, and most politically complex player-run communities in the history of the <strong>BendersMC Minecraft server</strong>. Founded on <strong>May 5, 2023</strong> by <strong>MasterSteve101</strong>, the Empire has risen from a secretive survival faction in the End Dimension into a global superpower, bridging competitive PvP combat, detailed world building, and sovereign legislation.</p>
         
         <p>At its peak in December 2024, the Elemental Empire became the <strong>first faction in BendersMC history to surpass 1,000 members</strong>, eventually expanding to over 1,200 citizens. Today, the Empire is governed under a joint <strong>Sovereign Triumvirate</strong> consisting of Emperors <strong>MasterSteve101</strong>, <strong>ThatPolarPhantom</strong>, and <strong>Miodaduk</strong>.</p>
         
         <p>Our civilization stands upon four pillars of faction culture:</p>
         <ul>
-          <li><strong>Loyalty &amp; Trust:</strong> In our empire, loyalty comes before raw bending power. Spies and infiltrators are met with military action, while active and dedicated citizens are promoted to the Senate.</li>
-          <li><strong>Bending Mastery:</strong> Weekly bending tournaments, FFA challenges, and tactical combat training prepare our military for international conflicts.</li>
-          <li><strong>Empire Engineering:</strong> We design custom defensive strongholds, coordinate warp networks, and construct massive sandbox cities.</li>
-          <li><strong>Archival Continuity:</strong> Unlike other realms, we record our history day-by-day and week-by-week, ensuring our legacy is never forgotten.</li>
+          <li>
+<strong>Loyalty &amp; Trust:</strong> In our empire, loyalty comes before raw bending power. Spies and infiltrators are met with military action, while active and dedicated citizens are promoted to the Senate.</li>
+          <li>
+<strong>Bending Mastery:</strong> Weekly bending tournaments, FFA challenges, and tactical combat training prepare our military for international conflicts.</li>
+          <li>
+<strong>Empire Engineering:</strong> We design custom defensive strongholds, coordinate warp networks, and construct massive sandbox cities.</li>
+          <li>
+<strong>Archival Continuity:</strong> Unlike other realms, we record our history day-by-day and week-by-week, ensuring our legacy is never forgotten.</li>
         </ul>
-      ]]></content>
+      ]]>
+</content>
     </page>
     <page id="protocols">
       <title>Empire Systems and Protocols</title>
       <subtitle>The Constitutional Framework of the Empire</subtitle>
-      <content><![CDATA[
+      <content>
+<![CDATA[
         <h3>⚖️ The EE Constitution</h3>
         <p>The Elemental Empire is governed by a codified constitution, originally drafted in January 2024 by the Senate. It balances the executive authority of the Triumvirate with the legislative representation of the Senate.</p>
 
         <h3>🚨 Lockdown Protocols</h3>
         <p>In times of espionage, coordinate leaks, or military threat, the Triumvirate can declare specific lockdown states:</p>
         <ul>
-          <li><strong>Code Green (Standard):</strong> All warp portals open. Trade is permitted with all neutral and allied factions.</li>
-          <li><strong>Code Yellow (Caution):</strong> Portals restricted. Outer defensive perimeters patrolled. Verification required for visitors.</li>
-          <li><strong>Code Red (Lockdown):</strong> Faction portals disabled. Citizens must retreat to hidden fallback bases. Senate sessions suspended; command shifts to military generals.</li>
+          <li>
+<strong>Code Green (Standard):</strong> All warp portals open. Trade is permitted with all neutral and allied factions.</li>
+          <li>
+<strong>Code Yellow (Caution):</strong> Portals restricted. Outer defensive perimeters patrolled. Verification required for visitors.</li>
+          <li>
+<strong>Code Red (Lockdown):</strong> Faction portals disabled. Citizens must retreat to hidden fallback bases. Senate sessions suspended; command shifts to military generals.</li>
         </ul>
 
         <h3>💰 GDP &amp; Economic Tiers</h3>
         <p>The Empire uses a Gross Domestic Product (GDP) tiering system based on citizen activity, in-game currency generation, and resources deposited into the Empire Vaults:</p>
         <ul>
-          <li><strong>Tier I (Vassal):</strong> Standard member. Access to main public warps and farms.</li>
-          <li><strong>Tier II (Squire):</strong> Verified contributor. Permitted to build in localized city districts (e.g. HabitatX).</li>
-          <li><strong>Tier III (Patrician):</strong> Vault managers, traders, and officers. Direct input on domestic spending.</li>
-          <li><strong>Tier IV (Sovereign Elite):</strong> Senate members, high generals, and the Triumvirate. Controls international trade tariffs and resource distribution.</li>
+          <li>
+<strong>Tier I (Vassal):</strong> Standard member. Access to main public warps and farms.</li>
+          <li>
+<strong>Tier II (Squire):</strong> Verified contributor. Permitted to build in localized city districts (e.g. HabitatX).</li>
+          <li>
+<strong>Tier III (Patrician):</strong> Vault managers, traders, and officers. Direct input on domestic spending.</li>
+          <li>
+<strong>Tier IV (Sovereign Elite):</strong> Senate members, high generals, and the Triumvirate. Controls international trade tariffs and resource distribution.</li>
         </ul>
-      ]]></content>
+      ]]>
+</content>
     </page>
     <page id="history">
       <title>History &amp; Chronicles</title>
       <subtitle>The Complete Legacy of the Elemental Empire</subtitle>
-      <content><![CDATA[
+      <content>
+<![CDATA[
         <h3>Founding Era (April – June 2023)</h3>
         <p>The Elemental Empire was officially founded on <strong>May 5, 2023</strong> by <strong>MasterSteve101</strong>. Due to early coordinate leaks and server rivalries, the first secure operations base was established deep in the End Dimension. Early pioneers included Dom, Moon, Itachi, Byte, and OffsetChaff6936. This era was characterized by defensive base engineering and early election frameworks.</p>
 
@@ -90,29 +112,37 @@
 
         <h3>New Era (2025 – Present)</h3>
         <p>Under new leadership (Emperors Lucario8002 and ThatPolarPhantom), the Empire expanded to new server sectors, establishing the legendary Golden River Capital. It maintains a highly active community of builders, PvP fighters, and chroniclers committed to preserving the Empire lineage.</p>
-      ]]></content>
+      ]]>
+</content>
     </page>
     <page id="allies">
       <title>Allies &amp; Diplomacy</title>
       <subtitle>International Coalitions &amp; Registry of the FSN</subtitle>
-      <content><![CDATA[
+      <content>
+<![CDATA[
         <h3>🌐 The Federation of Sovereign Nations (FSN)</h3>
         <p>Geopolitical survival is secured through the FSN, an international alliance network conceptualized and built by Co-Emperor <strong>ThatPolarPhantom</strong>. Foreign counter-espionage and treaty enforcement are actively managed by General Umar, the Lead for Allied Diplomacy.</p>
 
         <h3>📜 Historic Treaty Records</h3>
         <ul>
-          <li><strong>The Obsidian Pact (June 3, 2023):</strong> The Empire's first mutual-defense treaty, finalized with the Obsidians.</li>
-          <li><strong>The Neutral Third-Party Doctrine (June 11, 2023):</strong> A strategic declaration of neutrality during a massive multi-faction conflict, preserving resource reservoirs for future campaigns.</li>
-          <li><strong>Wartime Coalitions (Nov - Dec 2023):</strong> Direct defensive alliances forged to oppose TIL and CS expansion during the winter wars.</li>
+          <li>
+<strong>The Obsidian Pact (June 3, 2023):</strong> The Empire's first mutual-defense treaty, finalized with the Obsidians.</li>
+          <li>
+<strong>The Neutral Third-Party Doctrine (June 11, 2023):</strong> A strategic declaration of neutrality during a massive multi-faction conflict, preserving resource reservoirs for future campaigns.</li>
+          <li>
+<strong>Wartime Coalitions (Nov - Dec 2023):</strong> Direct defensive alliances forged to oppose TIL and CS expansion during the winter wars.</li>
         </ul>
 
         <h3>🌎 Registered Allied Nations</h3>
         <p>The Empire maintains full open-border trade and military coordinate-sharing with the following sovereign groups:</p>
         <ul>
-          <li><strong>The Felis Order:</strong> A long-standing faction bound by mutual-defense treaties and coordinate safeguard covenants.</li>
-          <li><strong>The Allied Satellites:</strong> Friendly player-run zones claimed under the Empire Banner to absorb population growth.</li>
+          <li>
+<strong>The Felis Order:</strong> A long-standing faction bound by mutual-defense treaties and coordinate safeguard covenants.</li>
+          <li>
+<strong>The Allied Satellites:</strong> Friendly player-run zones claimed under the Empire Banner to absorb population growth.</li>
         </ul>
-      ]]></content>
+      ]]>
+</content>
     </page>
   </pages>
 
@@ -391,40 +421,85 @@
   </timeline>
 
   <players>
-    <player>
-  <minecraft_username>TestUser</minecraft_username>
-  <discord_id>123456789012345678</discord_id>
-  <highest_role_id>1141377843578810399</highest_role_id>
-  <highest_role>Emperor</highest_role>
-  <notes>Sample player for role badge demo</notes>
-</player>
-<!-- Player entries are managed by Root Admin and the Discord sync bot -->
+    <!-- Player entries are managed by Root Admin and the Discord sync bot -->
   </players>
 
-  <discord_roles>
+ <discord_roles>
     <role priority="1" color="#f59e0b">
       <name>Emperor</name>
       <discord_id>1141377843578810399</discord_id>
     </role>
     <role priority="2" color="#a855f7">
-      <name>Co-Emperor</name>
+      <name>Grand Marshal</name>
       <discord_id>1460096831429279980</discord_id>
     </role>
     <role priority="3" color="#ef4444">
       <name>General</name>
       <discord_id>1161986676520931368</discord_id>
     </role>
-    <role priority="4" color="#3b82f6">
-      <name>Senator</name>
+    <role priority="4" color="#f43f5e">
+      <name>Grand Admiral</name>
+      <discord_id>1165733329174286458</discord_id>
+    </role>
+    <role priority="5" color="#f87171">
+      <name>Admiral</name>
+      <discord_id>1161986497709346857</discord_id>
+    </role>
+    <role priority="6" color="#3b82f6">
+      <name>Advisor</name>
       <discord_id>1260598108757299271</discord_id>
     </role>
-    <role priority="5" color="#10b981">
-      <name>Crusader</name>
+    <role priority="7" color="#60a5fa">
+      <name>Colonel</name>
+      <discord_id>1368319451438776481</discord_id>
+    </role>
+    <role priority="8" color="#06b6d4">
+      <name>Commander</name>
+      <discord_id>1165733105840173207</discord_id>
+    </role>
+    <role priority="9" color="#14b8a6">
+      <name>Major</name>
+      <discord_id>1257832764493922365</discord_id>
+    </role>
+    <role priority="10" color="#0d9488">
+      <name>Captain</name>
+      <discord_id>1257832495790035025</discord_id>
+    </role>
+    <role priority="11" color="#10b981">
+      <name>Officer</name>
+      <discord_id>1165733615242575923</discord_id>
+    </role>
+    <role priority="12" color="#eab308">
+      <name>Native</name>
+      <discord_id>1361135061981990934</discord_id>
+    </role>
+    <role priority="13" color="#6b7280">
+      <name>Citizen</name>
+      <discord_id>1193623900010066003</discord_id>
+    </role>
+    <role priority="14" color="#9ca3af">
+      <name>Recruit</name>
+      <discord_id>1159565105105752104</discord_id>
+    </role>
+    <role priority="15" color="#84cc16">
+      <name>Elder</name>
+      <discord_id>1356405086909366483</discord_id>
+    </role>
+    <role priority="16" color="#ec4899">
+      <name>Ally leader</name>
+      <discord_id>1513216395847143645</discord_id>
+    </role>
+    <role priority="17" color="#d946ef">
+      <name>FSN Leaders</name>
+      <discord_id>1269642992956866643</discord_id>
+    </role>
+    <role priority="18" color="#38bdf8">
+      <name>Ally</name>
       <discord_id>1161838206128496700</discord_id>
     </role>
-    <role priority="6" color="#6b7280">
-      <name>Member</name>
-      <discord_id>1193623900010066003</discord_id>
+    <role priority="19" color="#cbd5e1">
+      <name>Visitor</name>
+      <discord_id>1271077034805952554</discord_id>
     </role>
   </discord_roles>
 
