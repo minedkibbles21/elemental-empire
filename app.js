@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
 async function loadDatabase() {
   // Load static XML database from repository
   try {
-    const res = await fetch('database.xml');
+    const res = await fetch(`database.xml?ts=${Date.now()}`);
     if (!res.ok) throw new Error('Failed to load database.xml');
     const text = await res.text();
     const doc = new DOMParser().parseFromString(text, 'text/xml');
