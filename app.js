@@ -82,6 +82,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Initialize Netlify Identity
+  netlifyIdentity.init();
+
+  // Populate initial login state if already logged in via Netlify Identity
+  const initialUser = netlifyIdentity.currentUser();
+  if (initialUser) {
+    isLoggedIn = true;
+    adminRole = (initialUser.app_metadata && initialUser.app_metadata.roles && initialUser.app_metadata.roles.includes('admin')) ? 'root' : 'standard';
+    loggedInUser = initialUser.user_metadata?.full_name || initialUser.email;
+  }
+
   loadDatabase().then(doc => {
     xmlDatabase = doc;
     updateMetaInfo();
@@ -224,7 +235,12 @@ document.addEventListener('DOMContentLoaded', () => {
   async function loadDatabase() {
     // Attempt to fetch the protected XML via Netlify Function
     try {
-      const res = await fetch('/.netlify/functions/getDatabase');
+      const headers = {};
+      const user = netlifyIdentity.currentUser();
+      if (user && user.token && user.token.access_token) {
+        headers['Authorization'] = `Bearer ${user.token.access_token}`;
+      }
+      const res = await fetch('/.netlify/functions/getDatabase', { headers });
       if (res.status === 401) {
         // Not authenticated – trigger Netlify Identity login UI
         netlifyIdentity.open();
@@ -240,20 +256,31 @@ document.addEventListener('DOMContentLoaded', () => {
       return generateFallbackXML();
     }
   }
-  // Initialize Netlify Identity and listen for auth events
-  netlifyIdentity.init();
+  // Listen for auth events
   netlifyIdentity.on('login', user => {
     isLoggedIn = true;
     // Assume admin role is stored in user.app_metadata.roles array
     adminRole = (user.app_metadata && user.app_metadata.roles && user.app_metadata.roles.includes('admin')) ? 'root' : 'standard';
-    renderActiveTab();
-    showToast('Logged in via Netlify Identity');
+    loggedInUser = user.user_metadata?.full_name || user.email;
+    loadDatabase().then(doc => {
+      xmlDatabase = doc;
+      updateMetaInfo();
+      setupNavigation();
+      renderActiveTab();
+      showToast('Logged in via Netlify Identity');
+    });
   });
   netlifyIdentity.on('logout', () => {
     isLoggedIn = false;
     adminRole = null;
-    renderActiveTab();
-    showToast('Logged out');
+    loggedInUser = null;
+    loadDatabase().then(doc => {
+      xmlDatabase = doc;
+      updateMetaInfo();
+      setupNavigation();
+      renderActiveTab();
+      showToast('Logged out');
+    });
   });
   function saveDatabase() {
     if (!xmlDatabase) return;
