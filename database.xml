@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elemental_empire>
+  <meta>
+    <title>Elemental Empire Official Wiki</title>
+    <tagline>Loyalty Before Power — Forged in Flame, Carved in History</tagline>
+    <founded>May 5, 2023</founded>
+    <founder>MasterSteve101</founder>
+    <members>1,200+</members>
+    <alignment>BendersMC Superpower</alignment>
+    <era>The Sovereign Triumvirate</era>
+    <discord>https://discord.gg/4QPpFGfhnx</discord>
+    <youtube>https://www.youtube.com/channel/UCB6pK6iofPzMSoxg1I94c8g</youtube>
+    <lockdown_status>green</lockdown_status>
+    <security>
+      <root_password>Prachet@131</root_password>
+      <standard_password>Admin@EE</standard_password>
+      <users>
+        <user>
+          <username>admin</username>
+          <password>Prachet@131</password>
+          <role>root</role>
+        </user>
+        <user>
+          <username>standard</username>
+          <password>Admin@EE</password>
+          <role>standard</role>
+        </user>
+      </users>
+    </security>
+  </meta>
+
+  <pages>
+    <page id="home">
+      <title>Welcome to the Elemental Empire</title>
+      <subtitle>The Great Bending Civilization of BendersMC</subtitle>
+      <content><![CDATA[
+        <p>The <strong>Elemental Empire (EE)</strong> is one of the largest, oldest, and most politically complex player-run communities in the history of the <strong>BendersMC Minecraft server</strong>. Founded on <strong>May 5, 2023</strong> by <strong>MasterSteve101</strong>, the Empire has risen from a secretive survival faction in the End Dimension into a global superpower, bridging competitive PvP combat, detailed world building, and sovereign legislation.</p>
+        
+        <p>At its peak in December 2024, the Elemental Empire became the <strong>first faction in BendersMC history to surpass 1,000 members</strong>, eventually expanding to over 1,200 citizens. Today, the Empire is governed under a joint <strong>Sovereign Triumvirate</strong> consisting of Emperors <strong>MasterSteve101</strong>, <strong>ThatPolarPhantom</strong>, and <strong>Miodaduk</strong>.</p>
+        
+        <p>Our civilization stands upon four pillars of faction culture:</p>
+        <ul>
+          <li><strong>Loyalty &amp; Trust:</strong> In our empire, loyalty comes before raw bending power. Spies and infiltrators are met with military action, while active and dedicated citizens are promoted to the Senate.</li>
+          <li><strong>Bending Mastery:</strong> Weekly bending tournaments, FFA challenges, and tactical combat training prepare our military for international conflicts.</li>
+          <li><strong>Empire Engineering:</strong> We design custom defensive strongholds, coordinate warp networks, and construct massive sandbox cities.</li>
+          <li><strong>Archival Continuity:</strong> Unlike other realms, we record our history day-by-day and week-by-week, ensuring our legacy is never forgotten.</li>
+        </ul>
+      ]]></content>
+    </page>
+    <page id="protocols">
+      <title>Empire Systems and Protocols</title>
+      <subtitle>The Constitutional Framework of the Empire</subtitle>
+      <content><![CDATA[
+        <h3>⚖️ The EE Constitution</h3>
+        <p>The Elemental Empire is governed by a codified constitution, originally drafted in January 2024 by the Senate. It balances the executive authority of the Triumvirate with the legislative representation of the Senate.</p>
+
+        <h3>🚨 Lockdown Protocols</h3>
+        <p>In times of espionage, coordinate leaks, or military threat, the Triumvirate can declare specific lockdown states:</p>
+        <ul>
+          <li><strong>Code Green (Standard):</strong> All warp portals open. Trade is permitted with all neutral and allied factions.</li>
+          <li><strong>Code Yellow (Caution):</strong> Portals restricted. Outer defensive perimeters patrolled. Verification required for visitors.</li>
+          <li><strong>Code Red (Lockdown):</strong> Faction portals disabled. Citizens must retreat to hidden fallback bases. Senate sessions suspended; command shifts to military generals.</li>
+        </ul>
+
+        <h3>💰 GDP &amp; Economic Tiers</h3>
+        <p>The Empire uses a Gross Domestic Product (GDP) tiering system based on citizen activity, in-game currency generation, and resources deposited into the Empire Vaults:</p>
+        <ul>
+          <li><strong>Tier I (Vassal):</strong> Standard member. Access to main public warps and farms.</li>
+          <li><strong>Tier II (Squire):</strong> Verified contributor. Permitted to build in localized city districts (e.g. HabitatX).</li>
+          <li><strong>Tier III (Patrician):</strong> Vault managers, traders, and officers. Direct input on domestic spending.</li>
+          <li><strong>Tier IV (Sovereign Elite):</strong> Senate members, high generals, and the Triumvirate. Controls international trade tariffs and resource distribution.</li>
+        </ul>
+      ]]></content>
+    </page>
+    <page id="history">
+      <title>History &amp; Chronicles</title>
+      <subtitle>The Complete Legacy of the Elemental Empire</subtitle>
+      <content><![CDATA[
+        <h3>Founding Era (April – June 2023)</h3>
+        <p>The Elemental Empire was officially founded on <strong>May 5, 2023</strong> by <strong>MasterSteve101</strong>. Due to early coordinate leaks and server rivalries, the first secure operations base was established deep in the End Dimension. Early pioneers included Dom, Moon, Itachi, Byte, and OffsetChaff6936. This era was characterized by defensive base engineering and early election frameworks.</p>
+
+        <h3>Expansion Era (July – October 2023)</h3>
+        <p>During this period of rapid roster growth, Moon stepped down and Ravagebasher was elected Emperor. The Empire introduced the elite <strong>Holy Paladins of Revolution (THPRO)</strong> program and established faction satellites to bypass server member caps, securing major territories in Survival 2.</p>
+
+        <h3>War &amp; Politics Era (November 2023 – Early 2024)</h3>
+        <p>Geopolitics shifted with the declaration of the <strong>Second BendersMC World War</strong>. The Empire joined forces with global allies to combat joint coalitions from The Immortal Lotus (TIL) and CS. By late December, faction sizes surged past 300 members, prompting the drafting of the formal constitution and the creation of Senate elections.</p>
+
+        <h3>Empire Conflicts (Mid – Late 2024)</h3>
+        <p>A series of intense military campaigns (the First, Second, and Third Empire Wars) disrupted borders but demonstrated the martial strength of the Empire. Despite internal espionage scares and false coups, the Empire became the first faction on BendersMC to surpass 1,000 active members in December 2024.</p>
+
+        <h3>New Era (2025 – Present)</h3>
+        <p>Under new leadership (Emperors Lucario8002 and ThatPolarPhantom), the Empire expanded to new server sectors, establishing the legendary Golden River Capital. It maintains a highly active community of builders, PvP fighters, and chroniclers committed to preserving the Empire lineage.</p>
+      ]]></content>
+    </page>
+    <page id="allies">
+      <title>Allies &amp; Diplomacy</title>
+      <subtitle>International Coalitions &amp; Registry of the FSN</subtitle>
+      <content><![CDATA[
+        <h3>🌐 The Federation of Sovereign Nations (FSN)</h3>
+        <p>Geopolitical survival is secured through the FSN, an international alliance network conceptualized and built by Co-Emperor <strong>ThatPolarPhantom</strong>. Foreign counter-espionage and treaty enforcement are actively managed by General Umar, the Lead for Allied Diplomacy.</p>
+
+        <h3>📜 Historic Treaty Records</h3>
+        <ul>
+          <li><strong>The Obsidian Pact (June 3, 2023):</strong> The Empire's first mutual-defense treaty, finalized with the Obsidians.</li>
+          <li><strong>The Neutral Third-Party Doctrine (June 11, 2023):</strong> A strategic declaration of neutrality during a massive multi-faction conflict, preserving resource reservoirs for future campaigns.</li>
+          <li><strong>Wartime Coalitions (Nov - Dec 2023):</strong> Direct defensive alliances forged to oppose TIL and CS expansion during the winter wars.</li>
+        </ul>
+
+        <h3>🌎 Registered Allied Nations</h3>
+        <p>The Empire maintains full open-border trade and military coordinate-sharing with the following sovereign groups:</p>
+        <ul>
+          <li><strong>The Felis Order:</strong> A long-standing faction bound by mutual-defense treaties and coordinate safeguard covenants.</li>
+          <li><strong>The Allied Satellites:</strong> Friendly player-run zones claimed under the Empire Banner to absorb population growth.</li>
+        </ul>
+      ]]></content>
+    </page>
+  </pages>
+
+  <leaders>
+    <leader id="steve">
+      <name>MasterSteve101</name>
+      <title>Founding Emperor &amp; Lead Archivist</title>
+      <reign>May 2023 - Present</reign>
+      <element>Fire</element>
+      <avatar>🔥</avatar>
+      <achievements>
+        <achievement>Founded the Elemental Empire on May 5, 2023.</achievement>
+        <achievement>Established the original End Base to protect early citizens.</achievement>
+        <achievement>Archived every week of the Empire's timeline, preserving lore.</achievement>
+        <achievement>Led the Empire through the Fourth Empire War and exposed enemy toxicity.</achievement>
+      </achievements>
+      <legacy>Known as the founding father, Steve ensures the Empire's historical archives remain unbroken.</legacy>
+    </leader>
+    <leader id="polar">
+      <name>ThatPolarPhantom</name>
+      <title>Emperor &amp; Vanguard Commander</title>
+      <reign>Jan 2025 - Present</reign>
+      <element>Water</element>
+      <avatar>💧</avatar>
+      <achievements>
+        <achievement>Ascended to the Triumvirate in January 2025.</achievement>
+        <achievement>Directed combat campaigns during the Elemental Crusaders war.</achievement>
+        <achievement>Led diplomatic efforts within the Faction Superpower Network (FSN).</achievement>
+        <achievement>Maintained active military forces during regional PvP tournaments.</achievement>
+      </achievements>
+      <legacy>A steady and resolute protector, Polar guides the Empire through wartime coordination and strategic defense.</legacy>
+    </leader>
+    <leader id="mio">
+      <name>Miodaduk</name>
+      <title>Emperor &amp; Master Architect</title>
+      <reign>June 2026 - Present</reign>
+      <element>Earth</element>
+      <avatar>🪨</avatar>
+      <achievements>
+        <achievement>Co-designed the elite localized housing districts of HabitatX.</achievement>
+        <achievement>Architected major layout expansions within CoastCity and Endabrica.</achievement>
+        <achievement>Appointed to the Sovereign Triumvirate in June 2026.</achievement>
+        <achievement>Led the Empire sandbox build team to create grief-proof district subdivisions.</achievement>
+      </achievements>
+      <legacy>A legendary visual developer, Mio defined the physical aesthetic and structural majesty of the Empire's capitals.</legacy>
+    </leader>
+    <leader id="dom">
+      <name>Dom</name>
+      <title>Founding General &amp; First Warbringer</title>
+      <reign>May 2023 - July 2023</reign>
+      <element>Fire</element>
+      <avatar>⚔️</avatar>
+      <achievements>
+        <achievement>Organized the Empire's first military divisions.</achievement>
+        <achievement>Declared war on the Elites in June 2023, initiating martial traditions.</achievement>
+        <achievement>Established early coordinate coordinates for outpost networks.</achievement>
+      </achievements>
+      <legacy>Remembered as the first Warbringer, Dom laid down the martial code of combat before departing for real-life military duty.</legacy>
+    </leader>
+    <leader id="ravage">
+      <name>Ravagebasher</name>
+      <title>The Paladin Emperor</title>
+      <reign>July 2023 - August 2023</reign>
+      <element>Air</element>
+      <avatar>🌪️</avatar>
+      <achievements>
+        <achievement>Elected Emperor in July 2023 following Steve's temporary absence.</achievement>
+        <achievement>Created the THPRO program (Holy Paladins of Revolution) to select elite enforcers.</achievement>
+        <achievement>Initiated the Human Container Experiment (HCE) to test faction containment strategies.</achievement>
+      </achievements>
+      <legacy>Ravagebasher introduced structural enforcers and base security protocols that outlasted his reign.</legacy>
+    </leader>
+    <leader id="twins">
+      <name>Wren &amp; Killerkeller</name>
+      <title>The Twin Emperors</title>
+      <reign>Sept 2023 - Mid 2024</reign>
+      <element>Earth</element>
+      <avatar>👥</avatar>
+      <achievements>
+        <achievement>Oversaw the construction of the Season 2 and Season 3 Capitals.</achievement>
+        <achievement>Founded the Senate elections and the Empire Court (EECourt).</achievement>
+        <achievement>Consolidated membership roles during a period of massive growth.</achievement>
+      </achievements>
+      <legacy>Remembered for political stability, they introduced formal laws and judicial systems that elevated the faction.</legacy>
+    </leader>
+    <leader id="yuob">
+      <name>Yuob19</name>
+      <title>Emperor &amp; Voice of Loyalty</title>
+      <reign>Oct 2023 - Early 2024</reign>
+      <element>Air</element>
+      <avatar>🕊️</avatar>
+      <achievements>
+        <achievement>Guided the Empire through the Second BendersMC World War.</achievement>
+        <achievement>Coined the legendary Empire quote: "Loyalty comes before power."</achievement>
+        <achievement>Expanded active membership numbers past 300 benders.</achievement>
+      </achievements>
+      <legacy>Yuob is immortalized as a symbol of loyalty, advocating for trust-based politics over combat stats.</legacy>
+    </leader>
+  </leaders>
+
+  <bases>
+    <base id="s1_end">
+      <name>Season 1 - The End Base</name>
+      <era>Founding Era (2023)</era>
+      <location>End Dimension</location>
+      <features>Hidden vault networks, basic farms, and a centralized strategy chamber.</features>
+      <legacy>Built deep in the End to prevent griefing, this base was the cradle of the Empire where the original constitution was conceived.</legacy>
+    </base>
+    <base id="s2_capital">
+      <name>Season 2 - The First Official Capital</name>
+      <era>Expansion Era (2023)</era>
+      <location>Overworld</location>
+      <features>Central meeting hall, massive armories, outer stone walls, and public job blocks.</features>
+      <legacy>Marked the transition from a hidden survival group to an open bending empire, acting as the birthplace of the Senate.</legacy>
+    </base>
+    <base id="s4_prewar">
+      <name>Season 4 - The Pre-War Capital</name>
+      <era>War &amp; Politics Era (2024)</era>
+      <location>Overworld</location>
+      <features>Decentralized districts, secure underground vaults, and maze-like walls to trap raiders.</features>
+      <legacy>Serves as the main training ground and weapon forge prior to the outbreak of the BendersMC World Wars.</legacy>
+    </base>
+    <base id="s5_river">
+      <name>Season 5 - Golden River Capital</name>
+      <era>New Era (2025)</era>
+      <location>River Junction (Survival 5)</location>
+      <features>Water-based fortifications, decorative bridges, active trading port, and public warp gates.</features>
+      <legacy>Built by Emperors Lucario8002 and ThatPolarPhantom, it served as a symbol of peace and renewal after the wars.</legacy>
+    </base>
+    <base id="ee_capital">
+      <name>The New EECapital</name>
+      <era>Modern Era (May 2025 - Present)</era>
+      <location>CoastCity / Survival 5 (pwarp /pw EECapital)</location>
+      <features>HabitatX housing district, dual obsidian-reinforced walls, central assembly plaza, and grief-proof claim sub-divisions.</features>
+      <legacy>The most ambitious build in EE history. It represents the ultimate architectural achievement and resilience of the Empire's builders.</legacy>
+    </base>
+  </bases>
+
+  <wars>
+    <war id="world_war_2">
+      <name>Second BendersMC World War</name>
+      <date>Nov 14, 2023 – Early 2024</date>
+      <opponents>CS, The Immortal Lotus, and Allies</opponents>
+      <events>
+        <event>Blacknight declared war on November 14, 2023.</event>
+        <event>EE defended its capital under Code Red lockdown and conducted massive raids.</event>
+        <event>Wartime Senate restricted trading with hostile entities.</event>
+      </events>
+      <outcome>EE emerged as a dominant global power and expanded its citizen count to 300+.</outcome>
+    </war>
+    <war id="empire_war_1">
+      <name>First Empire War</name>
+      <date>April 7 – April 13, 2024</date>
+      <opponents>Internal Rebels &amp; SagePlasma444</opponents>
+      <events>
+        <event>SagePlasma444 challenged Empire authority on April 7.</event>
+        <event>The Senate suspended regular operations and transferred authority to General DireWolf.</event>
+      </events>
+      <outcome>Quick suppression of rebel forces; Empire authority re-established.</outcome>
+    </war>
+    <war id="empire_war_4">
+      <name>Fourth Empire War</name>
+      <date>March 2025 – May 2025</date>
+      <opponents>ISF, TNC, Syndicate, IOM (The Imperial Coalition)</opponents>
+      <events>
+        <event>EE entered the conflict to defend its ally UCSR from coalition ultimatums.</event>
+        <event>MasterSteve101 leaked evidence of Imperial toxic speech, fracturing opposing coalition unity.</event>
+        <event>On April 19, 2025, 4 EE soldiers defeated a 17-player Imperial ambush at /pw ffa in a legendary fight.</event>
+      </events>
+      <outcome>Despite winning key combat skirmishes, the campaign concluded in an overall coalition defeat. Medals of honor were issued to combatants.</outcome>
+    </war>
+    <war id="wither_raids">
+      <name>The Wither Raids of July 2025</name>
+      <date>July 29, 2025</date>
+      <opponents>Hostile Infiltrators &amp; TNC Sympathizers</opponents>
+      <events>
+        <event>Rogue spies leaked capital coordinates and spawned multiple Withers in the city grid.</event>
+        <event>Lava casts were dumped over public buildings to disrupt the capital.</event>
+        <event>Investigative efforts exposed the main griefer (Yjackliee) and funding sources.</event>
+      </events>
+      <outcome>Withers were successfully slain, and the city was cleaned. Led to the creation of grief-proof land division claims.</outcome>
+    </war>
+    <war id="crusaders">
+      <name>The Elemental Crusaders Campaign</name>
+      <date>November 2025 – February 2026</date>
+      <opponents>Imperials &amp; EON Alliance</opponents>
+      <events>
+        <event>EE, Sentinel, and UCSR remnants merged their militaries into the Elemental Crusaders.</event>
+        <event>On Nov 29, 2025, the Crusaders scored a 28-16 combat victory in the opening battle.</event>
+        <event>On Dec 22, 2025, the Crusaders achieved a flawless 26-0 victory against Imperial forces.</event>
+        <event>On Jan 17, 2026, Crusader forces routed the enemy 70-11 in a massive open-field skirmish.</event>
+      </events>
+      <outcome>Crucial victory; Crusaders maintained absolute statistical dominance (aggregate 164-63 K/D ratio).</outcome>
+    </war>
+  </wars>
+
+  <timeline>
+    <event>
+      <date>May 5, 2023</date>
+      <era>Founding</era>
+      <title>Founding of the Empire</title>
+      <desc>MasterSteve101 officially welcomes members to the newly proclaimed Elemental Empire.</desc>
+    </event>
+    <event>
+      <date>May 13, 2023</date>
+      <era>Founding</era>
+      <title>First Assassination Attempt</title>
+      <desc>Moon alerts the clan of an assassination attempt on MasterSteve101 by Iamruby. Itachi and Byte are named first Commanders.</desc>
+    </event>
+    <event>
+      <date>June 10, 2023</date>
+      <era>Founding</era>
+      <title>End Base Robbed &amp; Flag Revealed</title>
+      <desc>Spies raid the End Base. The first official Elemental Empire Faction Banner is revealed, and relocation plans are drawn.</desc>
+    </event>
+    <event>
+      <date>July 3, 2023</date>
+      <era>Expansion</era>
+      <title>Paladin Enforcers Created</title>
+      <desc>Ravagebasher is elected Emperor. He launches the THPRO enforcer program, selecting enforcers to guard bases and eliminate threats.</desc>
+    </event>
+    <event>
+      <date>August 15, 2023</date>
+      <era>Expansion</era>
+      <title>End Base S2 Portal</title>
+      <desc>Wren101205 designs a major End-Portal base, which becomes the secondary hub for faction item storage.</desc>
+    </event>
+    <event>
+      <date>Sept 7, 2023</date>
+      <era>Expansion</era>
+      <title>Ascension of the Twins</title>
+      <desc>Following Steve's temporary leave, Wren101205 and Killerkeller724 are elected Twin Emperors. General DireWolf takes military command.</desc>
+    </event>
+    <event>
+      <date>Nov 14, 2023</date>
+      <era>Wars</era>
+      <title>BendersMC World War II Declared</title>
+      <desc>Blacknight declares war. Elemental Empire joins forces against CS and The Immortal Lotus alliances, triggering Code Red lockdowns.</desc>
+    </event>
+    <event>
+      <date>Dec 2024</date>
+      <era>Wars</era>
+      <title>First Faction to 1,000 Members</title>
+      <desc>Despite surviving three empire wars and a false coup, EE surpasses 1,000 active Discord citizens, breaking BendersMC records.</desc>
+    </event>
+    <event>
+      <date>April 19, 2025</date>
+      <era>NewEra</era>
+      <title>The Imperials FFA Fight (4 vs 17)</title>
+      <desc>At /pw ffa, a small squad of 4 EE fighters is ambushed by 17 Imperial allies. EE scores an 18-15 combat victory, securing the field.</desc>
+    </event>
+    <event>
+      <date>May 25, 2025</date>
+      <era>NewEra</era>
+      <title>Construction of the New EECapital</title>
+      <desc>A grand construction project is initiated on Survival 5, building double obsidian walls, a Senate plaza, and the new HabitatX quarters.</desc>
+    </event>
+    <event>
+      <date>July 29, 2025</date>
+      <era>NewEra</era>
+      <title>The Wither coordinate breach</title>
+      <desc>A coordinate leak leads to rogue agents spawning Withers inside the capital claims. The military hunts them down and claims are restructured.</desc>
+    </event>
+    <event>
+      <date>Dec 22, 2025</date>
+      <era>NewEra</era>
+      <title>Crusaders 26-0 Flawless Victory</title>
+      <desc>The Elemental Crusaders achieve a flawless 26-0 victory in the 4th battle of the winter campaign, completely routing top rival fighters.</desc>
+    </event>
+    <event>
+      <date>June 15, 2026</date>
+      <era>NewEra</era>
+      <title>Rise of the Sovereign Architect</title>
+      <desc>Miodaduk is formally elevated to the Triumvirate, establishing the Modern Era of localized build zones and claims management.</desc>
+    </event>
+  </timeline>
+
+  <players>
+    <!-- Player entries are managed by Root Admin and the Discord sync bot -->
+  </players>
+
+  <discord_roles>
+    <role priority="1" color="#f59e0b">
+      <name>Emperor</name>
+      <discord_id>PASTE_ROLE_ID_HERE</discord_id>
+    </role>
+    <role priority="2" color="#a855f7">
+      <name>Co-Emperor</name>
+      <discord_id>PASTE_ROLE_ID_HERE</discord_id>
+    </role>
+    <role priority="3" color="#ef4444">
+      <name>General</name>
+      <discord_id>PASTE_ROLE_ID_HERE</discord_id>
+    </role>
+    <role priority="4" color="#3b82f6">
+      <name>Senator</name>
+      <discord_id>PASTE_ROLE_ID_HERE</discord_id>
+    </role>
+    <role priority="5" color="#10b981">
+      <name>Crusader</name>
+      <discord_id>PASTE_ROLE_ID_HERE</discord_id>
+    </role>
+    <role priority="6" color="#6b7280">
+      <name>Member</name>
+      <discord_id>PASTE_ROLE_ID_HERE</discord_id>
+    </role>
+  </discord_roles>
+
+</elemental_empire>
