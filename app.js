@@ -243,9 +243,9 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify({ message: `[EE Wiki] Auto-sync ${new Date().toISOString()}`, content, sha, branch })
       });
       if (putRes.ok) {
-        showToast('Published to GitHub! Pages redeploys in ~30s.');
+        showToast('Published to GitHub! Netlify redeploys in ~10s.');
         // Trigger automated status checks to trace the deployment progress
-        [5000, 15000, 30000, 45000].forEach(delay => setTimeout(checkGitHubDeploymentStatus, delay));
+        [4000, 10000, 20000, 30000].forEach(delay => setTimeout(checkGitHubDeploymentStatus, delay));
       }
       else { const err = await putRes.json(); throw new Error(err.message); }
     } catch(err) { alert('GitHub Publish Failed: ' + err.message); }
@@ -254,7 +254,8 @@ document.addEventListener('DOMContentLoaded', () => {
   async function checkGitHubDeploymentStatus() {
     const pat = document.getElementById('gh-pat')?.value || localStorage.getItem('ee_github_pat');
     const repo = document.getElementById('gh-repo')?.value || localStorage.getItem('ee_github_repo');
-    if (!pat || !repo) return;
+    const branch = document.getElementById('gh-branch')?.value || localStorage.getItem('ee_github_branch') || 'main';
+    const netlifySiteId = document.getElementById('netlify-site-id')?.value || localStorage.getItem('ee_netlify_site_id') || '6fc44b2e-5a7c-4ba4-a7d8-f904bc099ffc';
 
     const container = document.getElementById('gh-status-container');
     const badge = document.getElementById('gh-status-badge');
@@ -268,32 +269,45 @@ document.addEventListener('DOMContentLoaded', () => {
     badge.style.color = '#9ca3af';
     badge.style.borderColor = '#6b728055';
 
+    let badgeHtml = '';
+    if (netlifySiteId) {
+      badgeHtml = `<div style="margin-top:12px;padding-top:12px;border-top:1px dashed var(--border-color);"><strong style="display:block;margin-bottom:6px;font-size:10px;text-transform:uppercase;color:var(--accent);">Live Netlify Deployment:</strong><a href="https://elemental-empire.netlify.app/" target="_blank"><img src="https://api.netlify.com/api/v1/badges/${netlifySiteId}/deploy-status?r=${Math.random()}" alt="Netlify Deploy Status" style="display:block;max-width:120px;height:auto;"></a></div>`;
+    }
+
+    if (!pat || !repo) {
+      badge.textContent = 'NETLIFY';
+      badge.style.background = '#38bdf822';
+      badge.style.color = '#38bdf8';
+      badge.style.borderColor = '#38bdf855';
+      details.innerHTML = `<strong>Netlify URL</strong>: <a href="https://elemental-empire.netlify.app/" target="_blank" style="color:var(--accent);text-decoration:underline;">https://elemental-empire.netlify.app/</a><br><strong>Status Check</strong>: GitHub Sync settings not configured.${badgeHtml}`;
+      return;
+    }
+
     try {
-      const res = await fetch(`https://api.github.com/repos/${repo}/pages/deployments`, {
+      // Query the combined commit status API which captures Netlify, Vercel, and GitHub Actions builds
+      const res = await fetch(`https://api.github.com/repos/${repo}/commits/${branch}/status`, {
         headers: { 'Authorization': `token ${pat}`, 'Accept': 'application/vnd.github.v3+json' }
       });
       if (!res.ok) {
         throw new Error(`API returned status ${res.status}`);
       }
       const data = await res.json();
-      const latest = Array.isArray(data) ? data[0] : (data.deployments ? data.deployments[0] : null);
-      if (!latest) {
-        badge.textContent = 'No Deployments';
-        details.textContent = 'Ensure GitHub Pages is enabled in your repository settings (Settings -> Pages -> Build and deployment -> Deploy from a branch).';
-        return;
-      }
+      
+      // Look for a Netlify status check
+      const netlifyStatus = data.statuses?.find(s => s.context && s.context.toLowerCase().includes('netlify'));
+      
+      const status = netlifyStatus ? netlifyStatus.state : data.state;
+      const desc = netlifyStatus ? netlifyStatus.description : (data.statuses && data.statuses.length ? 'Combined repository status checks' : 'No deployments registered on GitHub yet.');
 
-      const status = latest.status || 'unknown';
-      badge.textContent = status.toUpperCase().replace('_', ' ');
+      badge.textContent = (status === 'success' ? 'Live' : status).toUpperCase();
+      
+      details.innerHTML = `<strong>Netlify URL</strong>: <a href="https://elemental-empire.netlify.app/" target="_blank" style="color:var(--accent);text-decoration:underline;">https://elemental-empire.netlify.app/</a><br><strong>Status Check</strong>: ${desc}${badgeHtml}`;
 
-      const timeStr = new Date(latest.updated_at || latest.created_at).toLocaleString();
-      details.innerHTML = `<strong>Page URL</strong>: <a href="${latest.page_url}" target="_blank" style="color:var(--accent);text-decoration:underline;">${latest.page_url}</a><br><strong>Last Updated</strong>: ${timeStr}`;
-
-      if (status === 'active') {
+      if (status === 'success') {
         badge.style.background = '#10b98122';
         badge.style.color = '#10b981';
         badge.style.borderColor = '#10b98155';
-      } else if (status === 'in_progress' || status === 'queued') {
+      } else if (status === 'pending') {
         badge.style.background = '#f59e0b22';
         badge.style.color = '#f59e0b';
         badge.style.borderColor = '#f59e0b55';
@@ -307,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
       badge.style.background = '#ef444422';
       badge.style.color = '#ef4444';
       badge.style.borderColor = '#ef444455';
-      details.textContent = `Could not fetch status: ${err.message}. Make sure your token (PAT) and repository name are correct.`;
+      details.innerHTML = `Could not fetch status: ${err.message}. Make sure your token (PAT) and repository name are correct.${badgeHtml}`;
     }
   }
 
@@ -1310,14 +1324,15 @@ document.addEventListener('DOMContentLoaded', () => {
           <button type="submit" class="btn btn-primary" style="width:100%;margin-top:10px;">Add Role</button>
         </form>
       </div>
-      <h4 class="admin-meta-header" style="margin-top:28px;">GitHub Pages Sync</h4>
+      <h4 class="admin-meta-header" style="margin-top:28px;">GitHub &amp; Netlify Sync</h4>
       <div class="github-sync-panel">
-        <p style="font-size:11px;color:var(--text-muted);margin-bottom:14px;">Publish database.xml directly to your GitHub repo to update the live site. The bot uses the same repo.</p>
+        <p style="font-size:11px;color:var(--text-muted);margin-bottom:14px;">Publish database.xml directly to your GitHub repo to update the live site. Netlify will deploy changes automatically in ~10s.</p>
         <div class="form-group"><label>GitHub Personal Access Token (PAT)</label><input type="password" class="form-control" id="gh-pat" placeholder="ghp_xxxxxxxxxxxx" value="${localStorage.getItem('ee_github_pat')||''}"></div>
         <div class="form-row">
           <div class="form-group"><label>Repository (user/repo)</label><input type="text" class="form-control" id="gh-repo" placeholder="yourusername/elemental-empire" value="${localStorage.getItem('ee_github_repo')||''}"></div>
           <div class="form-group"><label>Branch</label><input type="text" class="form-control" id="gh-branch" placeholder="main" value="${localStorage.getItem('ee_github_branch')||'main'}"></div>
         </div>
+        <div class="form-group"><label>Netlify Site ID (Optional for Status Badge)</label><input type="text" class="form-control" id="netlify-site-id" placeholder="e.g. 6fc44b2e-5a7c-4ba4-a7d8-f904bc099ffc" value="${localStorage.getItem('ee_netlify_site_id')||'6fc44b2e-5a7c-4ba4-a7d8-f904bc099ffc'}"></div>
         <div style="display:flex;gap:10px;">
           <button type="button" class="btn" id="gh-save-settings" style="flex:1;"><i class="fa-solid fa-floppy-disk"></i> Save Settings</button>
           <button type="button" class="btn github-publish-btn" id="gh-publish" style="flex:2;"><i class="fa-brands fa-github"></i> Publish to GitHub</button>
@@ -1503,7 +1518,8 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('ee_github_pat',    document.getElementById('gh-pat').value);
         localStorage.setItem('ee_github_repo',   document.getElementById('gh-repo').value);
         localStorage.setItem('ee_github_branch', document.getElementById('gh-branch').value);
-        showToast('GitHub settings saved locally.');
+        localStorage.setItem('ee_netlify_site_id', document.getElementById('netlify-site-id').value);
+        showToast('GitHub & Netlify settings saved locally.');
         checkGitHubDeploymentStatus();
       });
       document.getElementById('gh-publish')?.addEventListener('click', async () => {
