@@ -4,21 +4,22 @@ const path = require('path');
 
 /**
  * Netlify Function: getDatabase
- * Returns the XML database only for authenticated Netlify Identity users.
+ * Returns the XML database. For unauthenticated users, the sensitive security block is redacted.
  */
 exports.handler = async function(event, context) {
   // Netlify Identity injects a `user` object in `context.clientContext` when a valid JWT is present.
   const user = context.clientContext && context.clientContext.user;
-  if (!user) {
-    return {
-      statusCode: 401,
-      body: JSON.stringify({ error: 'Unauthenticated' })
-    };
-  }
 
   const xmlPath = path.join(__dirname, '..', '..', 'database.xml');
   try {
-    const xml = fs.readFileSync(xmlPath, 'utf8');
+    let xml = fs.readFileSync(xmlPath, 'utf8');
+
+    // If the user is not authenticated, redact the <security> block to protect sensitive credentials
+    if (!user) {
+      const securityRegex = /<security>[\s\S]*?<\/security>/g;
+      xml = xml.replace(securityRegex, '');
+    }
+
     return {
       statusCode: 200,
       headers: {
