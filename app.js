@@ -242,9 +242,73 @@ document.addEventListener('DOMContentLoaded', () => {
         headers: { 'Authorization': `token ${pat}`, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github.v3+json' },
         body: JSON.stringify({ message: `[EE Wiki] Auto-sync ${new Date().toISOString()}`, content, sha, branch })
       });
-      if (putRes.ok) showToast('Published to GitHub! Pages redeploys in ~30s.');
+      if (putRes.ok) {
+        showToast('Published to GitHub! Pages redeploys in ~30s.');
+        // Trigger automated status checks to trace the deployment progress
+        [5000, 15000, 30000, 45000].forEach(delay => setTimeout(checkGitHubDeploymentStatus, delay));
+      }
       else { const err = await putRes.json(); throw new Error(err.message); }
     } catch(err) { alert('GitHub Publish Failed: ' + err.message); }
+  }
+
+  async function checkGitHubDeploymentStatus() {
+    const pat = document.getElementById('gh-pat')?.value || localStorage.getItem('ee_github_pat');
+    const repo = document.getElementById('gh-repo')?.value || localStorage.getItem('ee_github_repo');
+    if (!pat || !repo) return;
+
+    const container = document.getElementById('gh-status-container');
+    const badge = document.getElementById('gh-status-badge');
+    const details = document.getElementById('gh-status-details');
+    if (!container || !badge || !details) return;
+
+    container.style.display = 'block';
+    badge.textContent = 'Checking…';
+    badge.className = 'role-badge';
+    badge.style.background = '#6b728022';
+    badge.style.color = '#9ca3af';
+    badge.style.borderColor = '#6b728055';
+
+    try {
+      const res = await fetch(`https://api.github.com/repos/${repo}/pages/deployments`, {
+        headers: { 'Authorization': `token ${pat}`, 'Accept': 'application/vnd.github.v3+json' }
+      });
+      if (!res.ok) {
+        throw new Error(`API returned status ${res.status}`);
+      }
+      const data = await res.json();
+      const latest = Array.isArray(data) ? data[0] : (data.deployments ? data.deployments[0] : null);
+      if (!latest) {
+        badge.textContent = 'No Deployments';
+        details.textContent = 'Ensure GitHub Pages is enabled in your repository settings (Settings -> Pages -> Build and deployment -> Deploy from a branch).';
+        return;
+      }
+
+      const status = latest.status || 'unknown';
+      badge.textContent = status.toUpperCase().replace('_', ' ');
+
+      const timeStr = new Date(latest.updated_at || latest.created_at).toLocaleString();
+      details.innerHTML = `<strong>Page URL</strong>: <a href="${latest.page_url}" target="_blank" style="color:var(--accent);text-decoration:underline;">${latest.page_url}</a><br><strong>Last Updated</strong>: ${timeStr}`;
+
+      if (status === 'active') {
+        badge.style.background = '#10b98122';
+        badge.style.color = '#10b981';
+        badge.style.borderColor = '#10b98155';
+      } else if (status === 'in_progress' || status === 'queued') {
+        badge.style.background = '#f59e0b22';
+        badge.style.color = '#f59e0b';
+        badge.style.borderColor = '#f59e0b55';
+      } else {
+        badge.style.background = '#ef444422';
+        badge.style.color = '#ef4444';
+        badge.style.borderColor = '#ef444455';
+      }
+    } catch (err) {
+      badge.textContent = 'Error';
+      badge.style.background = '#ef444422';
+      badge.style.color = '#ef4444';
+      badge.style.borderColor = '#ef444455';
+      details.textContent = `Could not fetch status: ${err.message}. Make sure your token (PAT) and repository name are correct.`;
+    }
   }
 
   /* ====================================================================
@@ -1258,6 +1322,16 @@ document.addEventListener('DOMContentLoaded', () => {
           <button type="button" class="btn" id="gh-save-settings" style="flex:1;"><i class="fa-solid fa-floppy-disk"></i> Save Settings</button>
           <button type="button" class="btn github-publish-btn" id="gh-publish" style="flex:2;"><i class="fa-brands fa-github"></i> Publish to GitHub</button>
         </div>
+        <div style="display:flex;gap:10px;margin-top:10px;">
+          <button type="button" class="btn" id="gh-check-status" style="width:100%;"><i class="fa-solid fa-rotate"></i> Refresh Deployment Status</button>
+        </div>
+        <div id="gh-status-container" style="margin-top:14px;padding:12px;background:rgba(255,255,255,0.02);border:1px solid var(--border-color);border-radius:6px;display:none;">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:11px;font-weight:bold;color:var(--text-muted);">Deployment Status:</span>
+            <span id="gh-status-badge" class="role-badge" style="padding:2px 8px;border-radius:4px;font-size:10px;">Unknown</span>
+          </div>
+          <p id="gh-status-details" style="font-size:10px;color:var(--text-muted);margin:8px 0 0 0;line-height:1.4;"></p>
+        </div>
       </div>`;
   }
 
@@ -1293,7 +1367,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.classList.add('active');
         const target = document.getElementById(`form-${btn.getAttribute('data-form')}`);
         allForms.forEach(f => f.style.display = 'none');
-        if (target) { target.style.display = 'block'; if (btn.getAttribute('data-form')==='builder') loadPageEditor(); if (btn.getAttribute('data-form')==='security'&&isRoot) { renderUserRegistryTable(); renderRoleRegistryTable(); } }
+        if (target) { target.style.display = 'block'; if (btn.getAttribute('data-form')==='builder') loadPageEditor(); if (btn.getAttribute('data-form')==='security'&&isRoot) { renderUserRegistryTable(); renderRoleRegistryTable(); checkGitHubDeploymentStatus(); } }
       });
     });
 
@@ -1430,6 +1504,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('ee_github_repo',   document.getElementById('gh-repo').value);
         localStorage.setItem('ee_github_branch', document.getElementById('gh-branch').value);
         showToast('GitHub settings saved locally.');
+        checkGitHubDeploymentStatus();
       });
       document.getElementById('gh-publish')?.addEventListener('click', async () => {
         const pat = document.getElementById('gh-pat').value, repo = document.getElementById('gh-repo').value, branch = document.getElementById('gh-branch').value||'main';
@@ -1439,6 +1514,7 @@ document.addEventListener('DOMContentLoaded', () => {
         await publishToGitHub(pat, repo, branch);
         btn.innerHTML = '<i class="fa-brands fa-github"></i> Publish to GitHub'; btn.disabled = false;
       });
+      document.getElementById('gh-check-status')?.addEventListener('click', checkGitHubDeploymentStatus);
       document.getElementById('apply-xml')?.addEventListener('click', () => {
         try {
           const doc = new DOMParser().parseFromString(document.getElementById('xmlTextarea').value, 'text/xml');
