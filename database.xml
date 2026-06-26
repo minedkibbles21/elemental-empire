@@ -425,51 +425,51 @@
   </players>
 
  <discord_roles>
-    <role priority="1" color="#f59e0b">
+    <role priority="1" color="#6b7280">
       <name>Emperor</name>
       <discord_id>1141377843578810399</discord_id>
     </role>
-    <role priority="2" color="#a855f7">
+    <role priority="2" color="#6b7280">
       <name>Grand Marshal</name>
       <discord_id>1460096831429279980</discord_id>
     </role>
-    <role priority="3" color="#ef4444">
+    <role priority="3" color="#6b7280">
       <name>General</name>
       <discord_id>1161986676520931368</discord_id>
     </role>
-    <role priority="4" color="#f43f5e">
+    <role priority="4" color="#6b7280">
       <name>Grand Admiral</name>
       <discord_id>1165733329174286458</discord_id>
     </role>
-    <role priority="5" color="#f87171">
+    <role priority="5" color="#6b7280">
       <name>Admiral</name>
       <discord_id>1161986497709346857</discord_id>
     </role>
-    <role priority="6" color="#3b82f6">
+    <role priority="6" color="#6b7280">
       <name>Advisor</name>
       <discord_id>1260598108757299271</discord_id>
     </role>
-    <role priority="7" color="#60a5fa">
+    <role priority="7" color="#6b7280">
       <name>Colonel</name>
       <discord_id>1368319451438776481</discord_id>
     </role>
-    <role priority="8" color="#06b6d4">
+    <role priority="8" color="#6b7280">
       <name>Commander</name>
       <discord_id>1165733105840173207</discord_id>
     </role>
-    <role priority="9" color="#14b8a6">
+    <role priority="9" color="#6b7280">
       <name>Major</name>
       <discord_id>1257832764493922365</discord_id>
     </role>
-    <role priority="10" color="#0d9488">
+    <role priority="10" color="#6b7280">
       <name>Captain</name>
       <discord_id>1257832495790035025</discord_id>
     </role>
-    <role priority="11" color="#10b981">
+    <role priority="11" color="#6b7280">
       <name>Officer</name>
       <discord_id>1165733615242575923</discord_id>
     </role>
-    <role priority="12" color="#eab308">
+    <role priority="12" color="#6b7280">
       <name>Native</name>
       <discord_id>1361135061981990934</discord_id>
     </role>
@@ -477,27 +477,27 @@
       <name>Citizen</name>
       <discord_id>1193623900010066003</discord_id>
     </role>
-    <role priority="14" color="#9ca3af">
+    <role priority="14" color="#6b7280">
       <name>Recruit</name>
       <discord_id>1159565105105752104</discord_id>
     </role>
-    <role priority="15" color="#84cc16">
+    <role priority="15" color="#6b7280">
       <name>Elder</name>
       <discord_id>1356405086909366483</discord_id>
     </role>
-    <role priority="16" color="#ec4899">
-      <name>Ally leader</name>
+    <role priority="16" color="#6b7280">
+      <name>Ally Leader</name>
       <discord_id>1513216395847143645</discord_id>
     </role>
-    <role priority="17" color="#d946ef">
+    <role priority="17" color="#6b7280">
       <name>FSN Leaders</name>
       <discord_id>1269642992956866643</discord_id>
     </role>
-    <role priority="18" color="#38bdf8">
+    <role priority="18" color="#6b7280">
       <name>Ally</name>
       <discord_id>1161838206128496700</discord_id>
     </role>
-    <role priority="19" color="#cbd5e1">
+    <role priority="19" color="#6b7280">
       <name>Visitor</name>
       <discord_id>1271077034805952554</discord_id>
     </role>
