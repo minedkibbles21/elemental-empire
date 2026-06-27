@@ -719,6 +719,23 @@ async function loadDatabase() {
     const roles   = Array.from(xmlDatabase.querySelectorAll('discord_roles role'))
       .sort((a,b) => parseInt(a.getAttribute('priority')||99) - parseInt(b.getAttribute('priority')||99));
 
+    const getRolePriority = (roleId) => {
+      const role = roles.find(r => r.querySelector('discord_id')?.textContent === roleId);
+      return role ? parseInt(role.getAttribute('priority') || 99) : 999;
+    };
+
+    // Sort players by rank priority (highest first) and then alphabetically by username
+    players.sort((a, b) => {
+      const aRoleId = a.querySelector('highest_role_id')?.textContent || '';
+      const bRoleId = b.querySelector('highest_role_id')?.textContent || '';
+      const priDiff = getRolePriority(aRoleId) - getRolePriority(bRoleId);
+      if (priDiff !== 0) return priDiff;
+
+      const aName = (a.querySelector('discord_username')?.textContent || a.querySelector('minecraft_username')?.textContent || '').toLowerCase();
+      const bName = (b.querySelector('discord_username')?.textContent || b.querySelector('minecraft_username')?.textContent || '').toLowerCase();
+      return aName.localeCompare(bName);
+    });
+
     const getRoleBadge = (roleId) => {
       const role = roles.find(r => r.querySelector('discord_id')?.textContent === roleId);
       if (!role) return '';
