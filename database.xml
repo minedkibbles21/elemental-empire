@@ -421,34 +421,18 @@
   </timeline>
 
   <players>
-    <player id="1480131648535134401">
-      <name>🦧 MrGoldMemer [79]</name>
-      <discord_username>🦧 MrGoldMemer [79]</discord_username>
-      <discord_id>1480131648535134401</discord_id>
-      <highest_role_id>1257832764493922365</highest_role_id>
-      <highest_role>Major</highest_role>
-      <notes></notes>
-    </player>
     <player id="865608236878397441">
-      <name>Kibbles (Cosmos's Trainee)🕊️</name>
+      <name>Kibbles (Cosmos&apos;s Trainee)🕊️</name>
       <discord_username>Kibbles (Cosmos&apos;s Trainee)🕊️</discord_username>
       <discord_id>865608236878397441</discord_id>
       <highest_role_id>1161986676520931368</highest_role_id>
       <highest_role>General</highest_role>
       <notes></notes>
     </player>
-    <player id="1425033657286000692">
-      <name>! GodDevil</name>
-      <discord_username>! GodDevil</discord_username>
-      <discord_id>1425033657286000692</discord_id>
-      <highest_role_id>1368319451438776481</highest_role_id>
-      <highest_role>Colonel</highest_role>
-      <notes></notes>
-    </player>
-    <player id="872716243025674260">
-      <name>Redhoodcloud</name>
-      <discord_username>Redhoodcloud</discord_username>
-      <discord_id>872716243025674260</discord_id>
+    <player id="904657298629201963">
+      <name>Lord Tronomia8</name>
+      <discord_username>Lord Tronomia8</discord_username>
+      <discord_id>904657298629201963</discord_id>
       <highest_role_id>1161986676520931368</highest_role_id>
       <highest_role>General</highest_role>
       <notes></notes>
@@ -2886,7 +2870,7 @@
       <notes></notes>
     </player>
     <player id="990892734141317140">
-      <name>! Shroud (Cosmos's Wifey ❤️)</name>
+      <name>! Shroud (Cosmos&apos;s Wifey ❤️)</name>
       <discord_username>! Shroud (Cosmos&apos;s Wifey ❤️)</discord_username>
       <discord_id>990892734141317140</discord_id>
       <highest_role_id>1161838206128496700</highest_role_id>
@@ -3587,6 +3571,14 @@
       <discord_id>1278927134668230684</discord_id>
       <highest_role_id>1159565105105752104</highest_role_id>
       <highest_role>Recruit</highest_role>
+      <notes></notes>
+    </player>
+    <player id="1425033657286000692">
+      <name>! GodDevil</name>
+      <discord_username>! GodDevil</discord_username>
+      <discord_id>1425033657286000692</discord_id>
+      <highest_role_id>1368319451438776481</highest_role_id>
+      <highest_role>Colonel</highest_role>
       <notes></notes>
     </player>
     <player id="710628868305846313">
@@ -4710,7 +4702,7 @@
       <notes></notes>
     </player>
     <player id="626401701976342529">
-      <name>Stupid (don't change name) 🦧</name>
+      <name>Stupid (don&apos;t change name) 🦧</name>
       <discord_username>Stupid (don&apos;t change name) 🦧</discord_username>
       <discord_id>626401701976342529</discord_id>
       <highest_role_id>1161838206128496700</highest_role_id>
@@ -6494,7 +6486,7 @@
       <notes></notes>
     </player>
     <player id="1296899994174881904">
-      <name>Designer McReuben, footy's idol</name>
+      <name>Designer McReuben, footy&apos;s idol</name>
       <discord_username>Designer McReuben, footy&apos;s idol</discord_username>
       <discord_id>1296899994174881904</discord_id>
       <highest_role_id>1271077034805952554</highest_role_id>
@@ -6981,6 +6973,14 @@
       <highest_role>Recruit</highest_role>
       <notes></notes>
     </player>
+    <player id="872716243025674260">
+      <name>Redhoodcloud</name>
+      <discord_username>Redhoodcloud</discord_username>
+      <discord_id>872716243025674260</discord_id>
+      <highest_role_id>1161986676520931368</highest_role_id>
+      <highest_role>General</highest_role>
+      <notes></notes>
+    </player>
     <player id="1197934520591200358">
       <name>jnewell13</name>
       <discord_username>jnewell13</discord_username>
@@ -7054,7 +7054,7 @@
       <notes></notes>
     </player>
     <player id="763846145864630302">
-      <name>Yuno-chan, Footy's cocaina</name>
+      <name>Yuno-chan, Footy&apos;s cocaina</name>
       <discord_username>Yuno-chan, Footy&apos;s cocaina</discord_username>
       <discord_id>763846145864630302</discord_id>
       <highest_role_id>1159565105105752104</highest_role_id>
@@ -7262,7 +7262,7 @@
       <notes></notes>
     </player>
     <player id="697077224301527082">
-      <name>Enderchicken, Mio's Right Wing</name>
+      <name>Enderchicken, Mio&apos;s Right Wing</name>
       <discord_username>Enderchicken, Mio&apos;s Right Wing</discord_username>
       <discord_id>697077224301527082</discord_id>
       <highest_role_id>1460096831429279980</highest_role_id>
@@ -10758,7 +10758,7 @@
       <notes></notes>
     </player>
     <player id="1056060492638076942">
-      <name>Sag, Footy's pengu</name>
+      <name>Sag, Footy&apos;s pengu</name>
       <discord_username>Sag, Footy&apos;s pengu</discord_username>
       <discord_id>1056060492638076942</discord_id>
       <highest_role_id>1271077034805952554</highest_role_id>
@@ -11630,7 +11630,7 @@
       <notes></notes>
     </player>
     <player id="1459578423851745565">
-      <name>Theo, Footy's Gng</name>
+      <name>Theo, Footy&apos;s Gng</name>
       <discord_username>Theo, Footy&apos;s Gng</discord_username>
       <discord_id>1459578423851745565</discord_id>
       <highest_role_id>1271077034805952554</highest_role_id>
@@ -13582,7 +13582,7 @@
       <notes></notes>
     </player>
     <player id="667017801663381534">
-      <name>🎰Gaylord(Cosmos's Bff🕊️)</name>
+      <name>🎰Gaylord(Cosmos&apos;s Bff🕊️)</name>
       <discord_username>🎰Gaylord(Cosmos&apos;s Bff🕊️)</discord_username>
       <discord_id>667017801663381534</discord_id>
       <highest_role_id>1161986497709346857</highest_role_id>
@@ -13646,7 +13646,7 @@
       <notes></notes>
     </player>
     <player id="1399082397554704455">
-      <name>༶•┈⛧┈♛_𝓛𝓲𝓿'𝓼𝓞𝓷𝓨𝓣!_♛┈⛧┈•༶</name>
+      <name>༶•┈⛧┈♛_𝓛𝓲𝓿&apos;𝓼𝓞𝓷𝓨𝓣!_♛┈⛧┈•༶</name>
       <discord_username>༶•┈⛧┈♛_𝓛𝓲𝓿&apos;𝓼𝓞𝓷𝓨𝓣!_♛┈⛧┈•༶</discord_username>
       <discord_id>1399082397554704455</discord_id>
       <highest_role_id>1165733615242575923</highest_role_id>
@@ -13675,14 +13675,6 @@
       <discord_id>1515961134086226001</discord_id>
       <highest_role_id>1159565105105752104</highest_role_id>
       <highest_role>Recruit</highest_role>
-      <notes></notes>
-    </player>
-    <player id="904657298629201963">
-      <name>Lord Tronomia8</name>
-      <discord_username>Lord Tronomia8</discord_username>
-      <discord_id>904657298629201963</discord_id>
-      <highest_role_id>1161986676520931368</highest_role_id>
-      <highest_role>General</highest_role>
       <notes></notes>
     </player>
     <player id="1155778101545021440">
@@ -13734,7 +13726,7 @@
       <notes></notes>
     </player>
     <player id="1419576159733284944">
-      <name>Jiraya (Cosmos's Fav) 🕊️</name>
+      <name>Jiraya (Cosmos&apos;s Fav) 🕊️</name>
       <discord_username>Jiraya (Cosmos&apos;s Fav) 🕊️</discord_username>
       <discord_id>1419576159733284944</discord_id>
       <highest_role_id>1271077034805952554</highest_role_id>
@@ -14533,6 +14525,14 @@
       <highest_role>Recruit</highest_role>
       <notes></notes>
     </player>
+    <player id="1480131648535134401">
+      <name>🦧 MrGoldMemer [79]</name>
+      <discord_username>🦧 MrGoldMemer [79]</discord_username>
+      <discord_id>1480131648535134401</discord_id>
+      <highest_role_id>1257832764493922365</highest_role_id>
+      <highest_role>Major</highest_role>
+      <notes></notes>
+    </player>
     <player id="1205413041894854706">
       <name>daisy00000.</name>
       <discord_username>daisy00000.</discord_username>
@@ -14718,7 +14718,7 @@
       <notes></notes>
     </player>
     <player id="1320329107992743967">
-      <name>! Lobster (Cosmos's Bestfriend)</name>
+      <name>! Lobster (Cosmos&apos;s Bestfriend)</name>
       <discord_username>! Lobster (Cosmos&apos;s Bestfriend)</discord_username>
       <discord_id>1320329107992743967</discord_id>
       <highest_role_id>1159565105105752104</highest_role_id>
@@ -15110,7 +15110,7 @@
       <notes></notes>
     </player>
     <player id="1223763178060513385">
-      <name>Crowned Duck, Footy's duck</name>
+      <name>Crowned Duck, Footy&apos;s duck</name>
       <discord_username>Crowned Duck, Footy&apos;s duck</discord_username>
       <discord_id>1223763178060513385</discord_id>
       <highest_role_id>1161838206128496700</highest_role_id>
@@ -15158,7 +15158,7 @@
       <notes></notes>
     </player>
     <player id="1058437342035198082">
-      <name>frogge (Uni's Frog)</name>
+      <name>frogge (Uni&apos;s Frog)</name>
       <discord_username>frogge (Uni&apos;s Frog)</discord_username>
       <discord_id>1058437342035198082</discord_id>
       <highest_role_id>1165733615242575923</highest_role_id>
