@@ -713,7 +713,7 @@ async function loadDatabase() {
   // ---- PLAYERS ----
   function renderPlayersView() {
     viewTitle.textContent = 'Player Database';
-    viewSubtitle.textContent = 'Empire citizens, Discord roles, and Minecraft profiles';
+    viewSubtitle.textContent = 'Empire citizens, Discord roles, and profiles';
     const isRoot = isLoggedIn && adminRole === 'root';
     const players = Array.from(xmlDatabase.querySelectorAll('players player'));
     const roles   = Array.from(xmlDatabase.querySelectorAll('discord_roles role'))
@@ -734,18 +734,24 @@ async function loadDatabase() {
     } else {
       html += `<div class="player-grid">`;
       players.forEach((player, idx) => {
-        const mcUser   = player.querySelector('minecraft_username')?.textContent || '';
+        const discUser = player.querySelector('discord_username')?.textContent || player.querySelector('minecraft_username')?.textContent || 'Unknown';
         const roleId   = player.querySelector('highest_role_id')?.textContent || '';
         const roleName = player.querySelector('highest_role')?.textContent || 'Member';
         const notes    = player.querySelector('notes')?.textContent || '';
-        const skinUrl  = mcUser ? `https://crafatar.com/avatars/${mcUser}?size=64&overlay=true` : '';
+        
+        // Generate a clean initials avatar with colored background
+        const colors = ['#f59e0b', '#a855f7', '#ef4444', '#3b82f6', '#10b981', '#ec4899', '#06b6d4'];
+        const colorIdx = Math.abs(discUser.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0)) % colors.length;
+        const avatarColor = colors[colorIdx];
+        const initial = (discUser[0] || 'U').toUpperCase();
+
         html += `<div class="player-card" data-entry-index="${idx}">
           <div class="player-card-top">
-            ${mcUser ? `<img class="player-skin" src="${skinUrl}" alt="${mcUser}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-              <div class="player-skin-placeholder" style="display:none;"><i class="fa-solid fa-user"></i></div>` :
-              `<div class="player-skin-placeholder"><i class="fa-solid fa-user"></i></div>`}
+            <div class="player-skin-placeholder" style="display:flex; background:${avatarColor}; color:#ffffff; font-weight:bold; font-size:24px; align-items:center; justify-content:center; width:52px; height:52px; border-radius:50%; border:2px solid rgba(255,255,255,0.1); margin-right:16px; flex-shrink:0;">
+              ${initial}
+            </div>
             <div class="player-info">
-              <div class="player-name">${mcUser || 'Unknown Player'}</div>
+              <div class="player-name">${escHtml(discUser)}</div>
               ${getRoleBadge(roleId) || `<span class="role-badge" style="background:#6b728022;color:#9ca3af;border:1px solid #6b728055;">${roleName}</span>`}
             </div>
           </div>
@@ -768,13 +774,14 @@ async function loadDatabase() {
     contentViewport.querySelectorAll('.entry-delete-btn[data-type="player"]').forEach(btn => {
       btn.addEventListener('click', () => {
         const idx = +btn.getAttribute('data-index');
-        if (confirm(`Delete "${players[idx]?.querySelector('minecraft_username')?.textContent}"?`)) { players[idx].remove(); saveDatabase(); renderPlayersView(); }
+        const dName = players[idx]?.querySelector('discord_username')?.textContent || players[idx]?.querySelector('minecraft_username')?.textContent || 'User';
+        if (confirm(`Delete "${dName}"?`)) { players[idx].remove(); saveDatabase(); renderPlayersView(); }
       });
     });
   }
 
   function openPlayerForm(playerNode, idx, players) {
-    const mcU   = playerNode?.querySelector('minecraft_username')?.textContent || '';
+    const dUser = playerNode?.querySelector('discord_username')?.textContent || playerNode?.querySelector('minecraft_username')?.textContent || '';
     const discId= playerNode?.querySelector('discord_id')?.textContent || '';
     const rId   = playerNode?.querySelector('highest_role_id')?.textContent || '';
     const notes = playerNode?.querySelector('notes')?.textContent || '';
@@ -786,9 +793,8 @@ async function loadDatabase() {
       return `<option value="${id}" ${rId===id?'selected':''}>${nm}</option>`;
     }).join('');
     openInlineEditModal(idx===-1?'Add New Player':'Edit Player', `
-      <div class="form-group"><label>Minecraft Username (Java Edition)</label>
-        <input type="text" class="form-control" id="ief-mcuser" value="${escHtml(mcU)}" placeholder="MasterSteve101">
-        <small style="font-size:10px;color:var(--text-muted);">Skin face fetched automatically from crafatar.com</small>
+      <div class="form-group"><label>Discord Username</label>
+        <input type="text" class="form-control" id="ief-duser" value="${escHtml(dUser)}" placeholder="Steve">
       </div>
       <div class="form-row">
         <div class="form-group"><label>Discord User ID</label><input type="text" class="form-control" id="ief-discid" value="${escHtml(discId)}" placeholder="123456789012345678"></div>
@@ -796,7 +802,7 @@ async function loadDatabase() {
       </div>
       <div class="form-group"><label>Admin Notes</label><textarea class="form-control" id="ief-notes">${escHtml(notes)}</textarea></div>
     `, () => {
-      const newMcU   = document.getElementById('ief-mcuser').value.trim();
+      const newDUser = document.getElementById('ief-duser').value.trim();
       const newDisc  = document.getElementById('ief-discid').value.trim();
       const newRoleId= document.getElementById('ief-roleid').value;
       const newNotes = document.getElementById('ief-notes').value;
@@ -806,9 +812,13 @@ async function loadDatabase() {
       let pContainer = xmlDatabase.querySelector('players');
       if (!pContainer) { pContainer=xmlDatabase.createElement('players'); xmlDatabase.querySelector('elemental_empire').appendChild(pContainer); }
       let node = playerNode;
-      if (!node || idx===-1) { node=xmlDatabase.createElement('player'); node.setAttribute('id', newMcU.toLowerCase().replace(/[^a-z0-9]/g,'')||`player_${Date.now()}`); pContainer.appendChild(node); }
-      ['minecraft_username','discord_id','highest_role_id','highest_role','notes'].forEach((tag,i) => setXmlField(node,tag,[newMcU,newDisc,newRoleId,roleName,newNotes][i]));
-      saveDatabase(); renderPlayersView(); showToast(`Player "${newMcU}" saved.`);
+      if (!node || idx===-1) { node=xmlDatabase.createElement('player'); node.setAttribute('id', newDisc || `player_${Date.now()}`); pContainer.appendChild(node); }
+      
+      const mcUserNode = node.querySelector('minecraft_username');
+      if (mcUserNode) mcUserNode.remove();
+
+      ['discord_username','discord_id','highest_role_id','highest_role','notes'].forEach((tag,i) => setXmlField(node,tag,[newDUser,newDisc,newRoleId,roleName,newNotes][i]));
+      saveDatabase(); renderPlayersView(); showToast(`Player "${newDUser}" saved.`);
     });
   }
 
